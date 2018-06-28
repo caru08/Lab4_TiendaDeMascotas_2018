@@ -32,8 +32,8 @@ class turno{
     }
 
     public function TraerTodosLosTurnos(){
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from turnos");
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();         
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT turnos.*, mascotas.*, usuarios.* FROM turnos INNER JOIN mascotas ON turnos.idMascota = mascotas.id INNER JOIN usuarios ON usuarios.id = turnos.idUsuario ORDER BY turnos.fecha");
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_CLASS, "Turno");            
     }

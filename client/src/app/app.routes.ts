@@ -6,6 +6,7 @@ import { RegistrarseUserComponent } from './components/login/registrarse-user.co
 import { MascotaFormularioComponent } from './components/acciones-usuario/mascota-formulario.component';
 import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
 import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
+import { ListadoTurnosTodosComponent } from './components/acciones-usuario/listado-turnos-todos.component';
 
 
 export const ROUTES: Routes = [
@@ -15,7 +16,8 @@ export const ROUTES: Routes = [
     children:[
       { path:'mascota-formulario', component: MascotaFormularioComponent },
       { path:'turnos-formulario', component: TurnoFormularioComponent },
-      { path:'mis-turnos', component: ListadoTurnosComponent }
+      { path:'mis-turnos', component: ListadoTurnosComponent },
+      { path:'listado-turnos', component: ListadoTurnosTodosComponent }
     ]
   },
   { path: 'login', component: LoginUserComponent },

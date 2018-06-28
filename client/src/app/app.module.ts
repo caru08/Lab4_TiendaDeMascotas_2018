@@ -40,6 +40,7 @@ import { HistorialViajesComponent } from './components/acciones-usuario/historia
 import { MascotaFormularioComponent } from './components/acciones-usuario/mascota-formulario.component';
 import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
 import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
+import { ListadoTurnosTodosComponent } from './components/acciones-usuario/listado-turnos-todos.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ListadoTurnosComponent } from './components/acciones-usuario/listado-tu
     HistorialViajesComponent,
     MascotaFormularioComponent,
     TurnoFormularioComponent,
-    ListadoTurnosComponent
+    ListadoTurnosComponent,
+    ListadoTurnosTodosComponent
   ],
   imports: [
     BrowserModule,
