@@ -6,6 +6,7 @@ export class User{
   public sex:string;
   public role:string;
   public pass:string;
+  public type:string;
 
   public copyData(data){
     this.id = data.id;
@@ -13,6 +14,7 @@ export class User{
     this.email = data.email;
     this.sex = data.sex;
     this.role = data.role;
+    this.type = data.type;
   }
 
 }

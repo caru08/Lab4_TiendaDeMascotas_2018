@@ -11,17 +11,10 @@ class loginApi {
         $result = array(
             'status' => 'success',
             'code' => 200,
-            'message' => "Token valido ",
+            'message' => "Prueba valida ",
             'data' => $lala
         );
         return $response->withJson($result);        
-       
-        /* var_dump($request);
-        echo "<br>";
-        echo "RESPONSEEEEEEEEEEEEEEEEEEEEEE";
-        var_dump($response);
-        echo "<br>";
-        var_dump($args);*/
 
     }
 
@@ -58,8 +51,7 @@ class loginApi {
             $result['message'] = "Error 500 de servidor ".$excepcion->getMessage();
         }
         return $response->withJson($result);     
-    }
-    
+    }    
 
     public function checkLogin($request, $response, $args){
         $result = array(
@@ -90,6 +82,54 @@ class loginApi {
         }
         return $response->withJson($result);   
     }
+
+    public function registrarse($request, $response, $args){
+        $result = array(
+            'status' => 'error',
+            'code' => 500,
+            'message' => "Error 500 de servidor"
+        );
+        try{
+            $data = $request->getParsedBody();
+            $error = 0;
+            if(empty($data['name'])){
+                $result['message'] = "Nombre requerido";
+                $error = 1;
+            }
+            if(empty($data['email'])){
+                $result['message'] = "Email requerido";
+                $error = 1;
+            }
+            if(empty($data['role'])){
+                $result['message'] = "Role requerido";
+                $error = 1;
+            }
+            if(empty($data['pass'])){
+                $result['message'] = "Clave requerida";
+                $error = 1;                
+            }
+            if($error == 0){
+                $md5Pass = md5($data['pass']);
+                $user = usuario::AgregarUsuario($data['name'], $data['email'], $md5Pass, $data['role']);
+                if($user == 'USER_EXISTS'){
+                    $result['message'] = "No se pudo registrar. Ya existe el usuario";
+                }else{
+                    $token = AutentificadorJWT::createToken($user->id, $user->name, $user->email, $user->role);
+                    $result = array(
+                        'status' => 'success',
+                        'code' => 201,
+                        'message' => 'Se registro correctamente',
+                        'data' => $token
+                    );
+                }
+            }   
+        }catch(Exception $excepcion){
+            $result['message'] = "Error 500 de servidor. ".$excepcion->getMessage();
+        }
+        return $response->withJson($result);     
+    }
+
+
 
 
 }

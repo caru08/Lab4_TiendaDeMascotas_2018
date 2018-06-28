@@ -4,13 +4,26 @@ import { Injectable } from '@angular/core';
 export class StaticData {
   static clientModules:any = [
     {
-      name: "Solicitar Viaje",
-      path: "/home/solicitar-viaje"
+      name: "Agregar Mascota",
+      path: "/home/mascota-formulario"
     },
     {
-      name: "Historial de Viajes",
-      path: "/home/mi-historial"
+      name: "Pedir turno",
+      path: "/home/turnos"
+    },
+    {
+      name: "Mis Turnos",
+      path: "/home/mis-turnos"
     }
-
-    ]
+  ];
+  static adminModules:any = [
+    {
+      name: "Agregar Mascota",
+      path: "/home/mascota-formulario"
+    },
+    {
+      name: "Turnos",
+      path: "/home/listado-turnos"
+    }
+  ];
 }

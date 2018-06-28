@@ -54,9 +54,8 @@ export class MenuNavBarComponent implements OnInit{
       case "client":
         this.modules = StaticData.clientModules;
         break;
-      case "driver":
-        break;
       case "admin":
+        this.modules = StaticData.adminModules;
         break;
     }
 

@@ -25,20 +25,30 @@
       </div>
       <div class="flex-v">
         <mat-form-field>
-          <mat-select placeholder="Sexo" #sex="ngModel" name="sex" [(ngModel)]="user.sex" required>
-            <mat-option *ngFor="let sexo of listaSexos" [value]="sexo.value">
-              {{ sexo.name }}
+          <mat-select placeholder="Tipo" #type="ngModel" name="type" [(ngModel)]="user.role" required>
+            <mat-option *ngFor="let type of listaRoles" [value]="type.value">
+              {{ type.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <span class="error-label" *ngIf="!sex.valid && sex.touched">Sexo requerido</span>
+        <span class="error-label" *ngIf="!type.valid && type.touched">Tipo requerido</span>
       </div>
-      <div class="flex-v">
-        <re-captcha (resolved)="resolved($event)" size="compact" theme="dark" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
-      </div>
-
+      <!--<div class="flex-v">-->
+        <!--<mat-form-field>-->
+          <!--<mat-select placeholder="Sexo" #sex="ngModel" name="sex" [(ngModel)]="user.sex" required>-->
+            <!--<mat-option *ngFor="let sexo of listaSexos" [value]="sexo.value">-->
+              <!--{{ sexo.name }}-->
+            <!--</mat-option>-->
+          <!--</mat-select>-->
+        <!--</mat-form-field>-->
+        <!--<span class="error-label" *ngIf="!sex.valid && sex.touched">Sexo requerido</span>-->
+      <!--</div>-->
+      <!--<div class="flex-v">-->
+        <!--<re-captcha (resolved)="resolved($event)" size="compact" theme="dark" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>-->
+      <!--</div>-->
+      <!-- SI VA CATPCHA AGREGAR ESTO AL BOTON [disabled]="(!formUser.valid) || invalidCaptcha"-->
       <div class="flex-h first-item">
-        <button mat-raised-button color="accent" [disabled]="(!formUser.valid) || invalidCaptcha" (click)="acceptClick()">Aceptar</button>
+        <button mat-raised-button color="accent" [disabled]="(!formUser.valid)" (click)="acceptClick()">Aceptar</button>
         <button mat-raised-button color="warn" (click)="cancelClick()" style="padding-left: 1em;">Cancelar</button>
       </div>
     </div>

@@ -21,6 +21,8 @@ import { StaticData } from './classes/staticData'
 import { ROUTES } from './app.routes';
 import { LoginService } from './services/login.service';
 import { SnackMessage } from './services/snackmessage.service';
+import { BaseService } from './services/base.service';
+import { MascotaService } from './services/mascota.service';
 
 
 import { AppComponent } from './app.component';
@@ -33,8 +35,8 @@ import { HomeComponent } from './components/home.component';
 import { MenuNavBarComponent } from './components/menu-nav-bar.component';
 import { LoginUserComponent } from './components/login/login-user.component';
 import { RegistrarseUserComponent } from './components/login/registrarse-user.component';
-import { SolicitarViajeComponent } from './components/acciones-usuario/solicitar-viaje.component';
 import { HistorialViajesComponent } from './components/acciones-usuario/historial-pedidos.component';
+import { MascotaFormularioComponent } from './components/acciones-usuario/mascota-formulario.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,8 @@ import { HistorialViajesComponent } from './components/acciones-usuario/historia
     CircleLoaderComponent,
     LoginUserComponent,
     RegistrarseUserComponent,
-    SolicitarViajeComponent,
-    HistorialViajesComponent
+    HistorialViajesComponent,
+    MascotaFormularioComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +98,8 @@ import { HistorialViajesComponent } from './components/acciones-usuario/historia
   providers: [
     LoginService,
     SnackMessage,
+    BaseService,
+    MascotaService,
     StaticData
   ],
   bootstrap: [AppComponent],

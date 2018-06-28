@@ -27,6 +27,17 @@ export class RegistrarseUserComponent {
     }
   ];
 
+  public listaRoles = [
+    {
+      name: 'CLIENTE',
+      value: 'client'
+    },
+    {
+      name: 'ADMINISTRADOR',
+      value: 'admin'
+    }
+  ];
+
   constructor(private router: Router,
               private loginService: LoginService,
               private snackMessage: SnackMessage) {

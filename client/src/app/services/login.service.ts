@@ -26,17 +26,10 @@ export class LoginService {
   }
 
   login(user):any{
-    var token = this.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token
-      })
-    };
-    return this._http.post(this.url + '/login', user, httpOptions)
+    return this._http.post(this.url + '/login', user, this.getHeaders())
       .map(
         res => this.succesLogin(res)
-      );
+    );
   }
 
   checkLogin():any{
@@ -47,7 +40,6 @@ export class LoginService {
         'Authorization': token
       })
     };
-    this.logout();
     return this._http.post(this.url + '/login/check', {}, httpOptions)
       .map(
         res => this.succesLogin(res)
@@ -62,13 +54,20 @@ export class LoginService {
   }
 
   registryUser(user):any{
-    let json = JSON.stringify(user);
-    let params = 'json=' + json;
-    return this._http.post(this.url + '/registrarse', params, {'headers': this.headers})
-      .map(res => this.succesLogin(res));
+    var token = this.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this._http.post(this.url + '/registrarse', user, this.getHeaders())
+      .map(
+        res => this.succesLogin(res)
+      );
   }
 
-  isLogged(){
+  public isLogged(){
     if(localStorage.getItem('user') &&(JSON.parse(localStorage.getItem('user'))).logged){
       return true;
     }else{
@@ -77,8 +76,21 @@ export class LoginService {
     }
   }
 
-  getRole(){
+  public getRole(){
     return this.session.user.role;
+  }
+
+  public getToken(){
+    return localStorage.getItem('userToken') ? (JSON.parse(localStorage.getItem('userToken'))).token : "";
+  }
+
+  private getHeaders(){
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.getToken()
+      })
+    };
   }
 
   private succesLogin(response){
@@ -96,10 +108,6 @@ export class LoginService {
     } catch (e) {
       return response;
     }
-  }
-
-  private getToken(){
-    return localStorage.getItem('userToken') ? (JSON.parse(localStorage.getItem('userToken'))).token : "";
   }
 
   private setAuthorizationHeader(token){

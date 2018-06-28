@@ -1,0 +1,56 @@
+<div class="container" style="margin-top: 5em">
+  <circle-loader [loading]="loading"></circle-loader>
+
+  <form #formMascota="ngForm">
+    <div class="flex-h-center flex-v">
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput placeholder="Numero de ficha" #nroFicha="ngModel" name="nroFicha" [(ngModel)]="mascota.nroFicha"
+                 required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!nroFicha.valid && nroFicha.touched">Numero de ficha requerido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput placeholder="Nombre" #nombre="ngModel" name="nombre" [(ngModel)]="mascota.nombre" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!nombre.valid && nombre.touched">Nombre requerido</span>
+
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput placeholder="Raza" #raza="ngModel" name="raza" [(ngModel)]="mascota.raza" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!raza.valid && raza.touched">Raza requerido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput placeholder="Color" #color="ngModel" name="color" [(ngModel)]="mascota.color" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!color.valid && color.touched">Color requerido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput type="number" placeholder="Edad" #edad="ngModel" name="edad" [(ngModel)]="mascota.edad" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!edad.valid && edad.touched">Edad requerido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <mat-select placeholder="Tipo" #tipo="ngModel" tipo="type" name="tipo" [(ngModel)]="mascota.tipo" required>
+            <mat-option *ngFor="let type of listaTipo" [value]="type.value">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!tipo.valid && tipo.touched">Tipo requerido</span>
+      </div>
+
+      <div class="flex-h first-item">
+        <button mat-raised-button color="accent" [disabled]="(!formMascota.valid)" (click)="acceptClick()">Aceptar</button>
+        <button mat-raised-button color="warn" (click)="cancelClick()" style="padding-left: 1em;">Cancelar</button>
+      </div>
+    </div>
+  </form>
+
+</div>
