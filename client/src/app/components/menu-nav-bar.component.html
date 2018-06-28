@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid flex-h">
+    <div class="navbar-header flex-20">
+      <a class="navbar-brand" routerLink="/home">Remisería "Humberto"</a>
+    </div>
+    <div class="flex-h flex-80">
+      <div class="flex-50 flex-h">
+        <ul class="nav navbar-nav" *ngFor="let module of modules">
+          <li><a (click)="moduleClick(module)">{{module.name}}</a></li>
+        </ul>
+      </div>
+      <div class="flex-50">
+        <ul class="nav navbar-nav flex-h-right">
+          <li *ngIf="!user"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+          <li *ngIf="!user"><a routerLink="/registrarse" routerLinkActive="active">Registrarse</a></li>
+          <li *ngIf="user"><a routerLinkActive="active">{{user.name | uppercase}}</a></li>
+          <li *ngIf="user"><a [routerLink]="[]" (click)="logOutClick()" routerLinkActive="active">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
