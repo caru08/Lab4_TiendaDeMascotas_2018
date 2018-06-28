@@ -5,25 +5,25 @@ export class StaticData {
   static clientModules:any = [
     {
       name: "Agregar Mascota",
-      path: "/home/mascota-formulario"
+      path: "home/mascota-formulario"
     },
     {
       name: "Pedir turno",
-      path: "/home/turnos"
+      path: "home/turnos-formulario"
     },
     {
       name: "Mis Turnos",
-      path: "/home/mis-turnos"
+      path: "home/mis-turnos"
     }
   ];
   static adminModules:any = [
     {
       name: "Agregar Mascota",
-      path: "/home/mascota-formulario"
+      path: "home/mascota-formulario"
     },
     {
       name: "Turnos",
-      path: "/home/listado-turnos"
+      path: "home/listado-turnos"
     }
   ];
 }

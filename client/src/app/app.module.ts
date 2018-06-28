@@ -23,6 +23,7 @@ import { LoginService } from './services/login.service';
 import { SnackMessage } from './services/snackmessage.service';
 import { BaseService } from './services/base.service';
 import { MascotaService } from './services/mascota.service';
+import { TurnoService } from './services/turno.service';
 
 
 import { AppComponent } from './app.component';
@@ -37,6 +38,8 @@ import { LoginUserComponent } from './components/login/login-user.component';
 import { RegistrarseUserComponent } from './components/login/registrarse-user.component';
 import { HistorialViajesComponent } from './components/acciones-usuario/historial-pedidos.component';
 import { MascotaFormularioComponent } from './components/acciones-usuario/mascota-formulario.component';
+import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
+import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { MascotaFormularioComponent } from './components/acciones-usuario/mascot
     LoginUserComponent,
     RegistrarseUserComponent,
     HistorialViajesComponent,
-    MascotaFormularioComponent
+    MascotaFormularioComponent,
+    TurnoFormularioComponent,
+    ListadoTurnosComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,7 @@ import { MascotaFormularioComponent } from './components/acciones-usuario/mascot
     SnackMessage,
     BaseService,
     MascotaService,
+    TurnoService,
     StaticData
   ],
   bootstrap: [AppComponent],

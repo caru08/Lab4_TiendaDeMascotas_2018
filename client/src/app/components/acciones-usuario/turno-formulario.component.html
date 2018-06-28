@@ -1,0 +1,32 @@
+<div class="container" style="margin-top: 5em">
+  <circle-loader [loading]="loading"></circle-loader>
+
+  <form #formTurno="ngForm">
+    <div class="flex-h-center flex-v">
+
+      <div class="flex-v">
+        <mat-form-field>
+          <mat-select placeholder="Mascota" #mascota="ngModel" name="mascota" [(ngModel)]="turno.idMascota" required>
+            <mat-option *ngFor="let mascota of listaMascotas" [value]="mascota.id">
+              {{ mascota.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!mascota.valid && mascota.touched">Mascota requerido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" #fecha="ngModel" name="fecha" placeholder="Seleccionar fecha" [(ngModel)]="turno.fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-h first-item">
+        <button mat-raised-button color="accent" [disabled]="(!formTurno.valid)" (click)="acceptClick()">Aceptar</button>
+        <button mat-raised-button color="warn" (click)="cancelClick()" style="padding-left: 1em;">Cancelar</button>
+      </div>
+    </div>
+  </form>
+
+</div>

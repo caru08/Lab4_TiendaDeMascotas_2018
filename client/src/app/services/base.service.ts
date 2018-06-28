@@ -33,15 +33,14 @@ export class BaseService {
 
   public post(api, data?){
     data = data ? data : {};
-    return this._http.post(this.url + api, data, this.getHeaders())
-      .catch((e: any, caught: Observable<any>): ObservableInput<any> => { return this.responseInterceptor(e, caught) });
+    return this._http.post(this.url + api, data, this.getHeaders());
   }
 
   public get(api){
-    return this._http.post(this.url + api, '', this.getHeaders());
+    return this._http.get(this.url + api, this.getHeaders());
   }
 
-  private responseInterceptor(e, caught){
+  private responseInterceptor(e){
     debugger;
     this.snackMessage.ShowErrorSnack(e);
   }

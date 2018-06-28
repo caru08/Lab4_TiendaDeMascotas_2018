@@ -11,23 +11,29 @@ import { SnackMessage } from './snackmessage.service';
 import {BaseService} from "./base.service";
 
 @Injectable()
-export class MascotaService {
+export class TurnoService {
 
-  private url = '/mascotas';
+  private url = '/turnos';
 
   constructor(private baseService:BaseService){
   }
 
-  agregarMasctora(mascota):any{
+  agregarTurno(mascota):any{
     var path = this.url + '/agregar';
     return this.baseService.post(path, mascota);
   }
 
-  listarMascotas():any{
+  listarTodosLosTurnos():any{
     return this.baseService.get(this.url)
+  }
+
+  listarTurnosPorCliente():any{
+    var path = this.url + '/clientes';
+    return this.baseService.get(path);
   }
 
 
 
 
 }
+

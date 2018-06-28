@@ -4,9 +4,8 @@ import { HomeComponent} from './components/home.component';
 import { LoginUserComponent } from './components/login/login-user.component';
 import { RegistrarseUserComponent } from './components/login/registrarse-user.component';
 import { MascotaFormularioComponent } from './components/acciones-usuario/mascota-formulario.component';
-
-//import { ListadoPersonasComponent } from './components/listadoPersonas.component';
-//import { FormPersonaComponent } from './components/form-persona.component';
+import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
+import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
 
 
 export const ROUTES: Routes = [
@@ -15,7 +14,8 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent,
     children:[
       { path:'mascota-formulario', component: MascotaFormularioComponent },
-      { path:'pedir-turno', component: MascotaFormularioComponent }
+      { path:'turnos-formulario', component: TurnoFormularioComponent },
+      { path:'mis-turnos', component: ListadoTurnosComponent }
     ]
   },
   { path: 'login', component: LoginUserComponent },

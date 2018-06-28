@@ -80,6 +80,10 @@ export class LoginService {
     return this.session.user.role;
   }
 
+  public getUserId(){
+    return this.session.user.id;
+  }
+
   public getToken(){
     return localStorage.getItem('userToken') ? (JSON.parse(localStorage.getItem('userToken'))).token : "";
   }

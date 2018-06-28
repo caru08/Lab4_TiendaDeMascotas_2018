@@ -7,6 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 require_once 'libraries/scriptator.php';
 require_once 'clases/login.php';
 require_once 'clases/mascotaApi.php';
+require_once 'clases/turnoApi.php';
 require_once 'clases/MWparaCORS.php';
 require_once 'clases/MWparaAutentificar.php';
 
@@ -39,6 +40,12 @@ $app->post('/registrarse', \loginApi::class . ':registrarse')->add(\MWparaCORS::
 $app->post('/mascotas/agregar', \mascotaApi::class . ':agregar')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
 $app->get('/mascotas', \mascotaApi::class . ':listaMascotas')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+
+$app->post('/turnos/agregar', \turnoApi::class . ':agregar')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarClient');
+
+$app->get('/turnos', \turnoApi::class . ':listaTurnos')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarAdmin');
+
+$app->get('/turnos/clientes', \turnoApi::class . ':listaTurnosPorCliente')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarClient');
 
 //API EJEMPLO, PERMISO SOLO PARA ADMINS
 $app->post('/conPermiso', \loginApi::class . ':pruebas')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarAdmin');
