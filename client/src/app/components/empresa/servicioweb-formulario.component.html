@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 5em">
+        <circle-loader [loading]="loading"></circle-loader>
+      
+        <form #formServicioWeb="ngForm">
+          <div class="flex-h-center flex-v">
+            <div class="flex-v">
+              <mat-form-field>
+                <input matInput placeholder="Nombre del sitio" #nombre="ngModel" name="nombre" [(ngModel)]="servicioWeb.nombre" required>
+              </mat-form-field>
+              <span class="error-label" *ngIf="!nombre.valid && nombre.touched">Nombre requerido</span>
+      
+            </div>
+            <div class="flex-v">
+              <mat-form-field>
+                <input matInput type="number" placeholder="Espacio solicitado" #espacio="ngModel" name="espacio" [(ngModel)]="servicioWeb.espacio" required>
+              </mat-form-field>
+              <span class="error-label" *ngIf="!espacio.valid && espacio.touched">Espacio requerido</span>
+            </div>      
+            <div class="flex-h first-item">
+              <button mat-raised-button color="accent" [disabled]="(!formServicioWeb.valid)" (click)="acceptClick()">Aceptar</button>
+              <button mat-raised-button color="warn" (click)="cancelClick()" style="padding-left: 1em;">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      
+      </div>
+      

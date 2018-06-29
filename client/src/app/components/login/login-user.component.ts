@@ -14,6 +14,21 @@ export class LoginUserComponent implements OnInit {
   public user  = new User();
   public loading:boolean;
 
+  public listaRoles = [
+    {
+      name: "Profesional",
+      value: "profesional"
+    },
+    {
+      name: "Normal",
+      value: "normal"
+    },
+    {
+      name: "Free",
+      value: "free"
+    }
+  ];
+
   constructor(private router: Router,
               private loginService: LoginService,
               private snackMessage: SnackMessage ){
@@ -28,6 +43,27 @@ export class LoginUserComponent implements OnInit {
 
   registrarse() {
     this.router.navigate(['/registrarse' ]);
+  }
+
+  profesionalClick(){
+    this.user.name = "Carlos";
+    this.user.email = "carlos@email.com";
+    this.user.role = "profesional";
+    this.user.pass = "1234";
+  }
+
+  normalClick(){
+    this.user.name = "German";
+    this.user.email = "german@email.com";
+    this.user.role = "normal";
+    this.user.pass = "1234";
+  }
+  
+  freeClick(){
+    this.user.name = "Carina";
+    this.user.email = "carina@email.com";
+    this.user.role = "free";
+    this.user.pass = "1234";
   }
 
   private login(){

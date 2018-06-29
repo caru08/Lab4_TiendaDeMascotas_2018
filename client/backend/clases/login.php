@@ -28,10 +28,13 @@ class loginApi {
             $ArrayDeParametros = $request->getParsedBody();
             $token="";
             if(isset( $ArrayDeParametros['email'])&& isset( $ArrayDeParametros['pass'])) {   
+                $name = $ArrayDeParametros['name'];
                 $email = $ArrayDeParametros['email'];
                 $pass =  $ArrayDeParametros['pass'];
+                $role = $ArrayDeParametros['role'];
                 $md5Pass = md5($pass);
-                $user = usuario::TraerEmpleadoEmailClave($email, $md5Pass);
+              //  $user = usuario::TraerUsuarioTodosLosDatos($name, $email, $md5Pass, $role);
+                $user = usuario::TraerEmpleadoEmailClave($email, $md5Pass, $name, $role);          
                 if($user){
                     $token = AutentificadorJWT::createToken($user->id, $user->name, $user->email, $user->role);
                     $result = array(
@@ -110,7 +113,7 @@ class loginApi {
             }
             if($error == 0){
                 $md5Pass = md5($data['pass']);
-                $user = usuario::AgregarUsuario($data['name'], $data['email'], $md5Pass, $data['role']);
+                $user = usuario::AgregarUsuario($data['name'], $data['email'], $md5Pass, $data['role'],  $data['sex']);
                 if($user == 'USER_EXISTS'){
                     $result['message'] = "No se pudo registrar. Ya existe el usuario";
                 }else{
@@ -129,6 +132,26 @@ class loginApi {
         return $response->withJson($result);     
     }
 
+    public function listarUsuarios($request, $response, $args){
+        $result = array(
+            'status' => 'error',
+            'code' => 500,
+            'message' => "Error 500 de servidor"
+        );
+        try{
+            $clientes = usuario::TraerTodosLosUsuarios();
+            $result = array(
+                'status' => 'success',
+                'code' => 200,
+                'message' => "Listado usuarios",
+                'data' => $clientes
+            );
+        }catch(Exception $excepcion){
+            $result['message'] = "Error 500 de servidor. ".$excepcion->getMessage();
+        }
+        return $response->withJson($result);     
+
+    }
 
 
 

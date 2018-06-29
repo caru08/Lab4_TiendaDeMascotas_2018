@@ -8,6 +8,7 @@ require_once 'libraries/scriptator.php';
 require_once 'clases/login.php';
 require_once 'clases/mascotaApi.php';
 require_once 'clases/turnoApi.php';
+require_once 'clases/servicioWebApi.php';
 require_once 'clases/MWparaCORS.php';
 require_once 'clases/MWparaAutentificar.php';
 
@@ -28,6 +29,7 @@ $app->get('[/]', function (Request $request, Response $response) {
     return $response;
   })->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
+$app->get('/pruebas[/]', \loginApi::class . ':pruebas')->add(\MWparaCORS::class . ':HabilitarCORSTodos');  
 
 $app->post('/pruebas[/]', \loginApi::class . ':pruebas')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
@@ -36,6 +38,8 @@ $app->post('/login[/]', \loginApi::class . ':login')->add(\MWparaCORS::class . '
 $app->post('/login/check', \loginApi::class . ':checkLogin')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
 $app->post('/registrarse', \loginApi::class . ':registrarse')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+
+$app->get('/usuarios', \loginApi::class . ':listarUsuarios')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
 $app->post('/mascotas/agregar', \mascotaApi::class . ':agregar')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
@@ -46,6 +50,12 @@ $app->post('/turnos/agregar', \turnoApi::class . ':agregar')->add(\MWparaCORS::c
 $app->get('/turnos', \turnoApi::class . ':listaTurnos')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarAdmin');
 
 $app->get('/turnos/clientes', \turnoApi::class . ':listaTurnosPorCliente')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarClient');
+
+$app->post('/servicioWeb/agregar', \servicioWebApi::class . ':agregar')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+
+$app->get('/servicioWeb', \servicioWebApi::class . ':listarServiciosWeb')->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+
+
 
 //API EJEMPLO, PERMISO SOLO PARA ADMINS
 $app->post('/conPermiso', \loginApi::class . ':pruebas')->add(\MWparaCORS::class . ':HabilitarCORSTodos')->add(\MWparaAutentificar::class . ':VerificarAdmin');

@@ -17,14 +17,20 @@ import { RecaptchaModule } from 'ng-recaptcha';
 
 
 //SERVICIOS
-import { StaticData } from './classes/staticData'
+import { StaticData } from './classes/staticData';
+import { MBPipe } from './classes/pipeMb.pipe';
+import { DolarPipe } from './classes/pipeDolar.pipe';
+import { ColorDirective } from './classes/directiveColor.directive';
+
+
 import { ROUTES } from './app.routes';
 import { LoginService } from './services/login.service';
 import { SnackMessage } from './services/snackmessage.service';
 import { BaseService } from './services/base.service';
 import { MascotaService } from './services/mascota.service';
 import { TurnoService } from './services/turno.service';
-
+import { ServicioWebService } from './services/servicioWeb.service';
+import { ServicioClienteService } from './services/servicioCliente.service';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +47,12 @@ import { MascotaFormularioComponent } from './components/acciones-usuario/mascot
 import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
 import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
 import { ListadoTurnosTodosComponent } from './components/acciones-usuario/listado-turnos-todos.component';
+import { ServicioWebFormularioComponent } from './components/empresa/servicioWeb-formulario.component';
+import { ServicioWebListadoComponent } from './components/empresa/servicioWeb-listado.component';
+import { ListadoClientesComponent } from './components/empresa/listado-clientes.component';
 
+
+ServicioWebListadoComponent
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +65,12 @@ import { ListadoTurnosTodosComponent } from './components/acciones-usuario/lista
     MascotaFormularioComponent,
     TurnoFormularioComponent,
     ListadoTurnosComponent,
-    ListadoTurnosTodosComponent
+    ListadoTurnosTodosComponent,
+    ServicioWebFormularioComponent,
+    ServicioWebListadoComponent,
+    MBPipe,
+    DolarPipe,
+    ListadoClientesComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +124,8 @@ import { ListadoTurnosTodosComponent } from './components/acciones-usuario/lista
     BaseService,
     MascotaService,
     TurnoService,
+    ServicioWebService,
+    ServicioClienteService,
     StaticData
   ],
   bootstrap: [AppComponent],

@@ -33,6 +33,16 @@
         </mat-form-field>
         <span class="error-label" *ngIf="!type.valid && type.touched">Tipo requerido</span>
       </div>
+      <div class="flex-v">
+          <mat-form-field>
+            <mat-select placeholder="Sexo" #sexo="ngModel" name="sexo" [(ngModel)]="user.sex" required>
+              <mat-option *ngFor="let sexo of listaSexos" [value]="sexo.value">
+                {{ sexo.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <span class="error-label" *ngIf="!type.valid && type.touched">Tipo requerido</span>
+        </div>
       <!--<div class="flex-v">-->
         <!--<mat-form-field>-->
           <!--<mat-select placeholder="Sexo" #sex="ngModel" name="sex" [(ngModel)]="user.sex" required>-->

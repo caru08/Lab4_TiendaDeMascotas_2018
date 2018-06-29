@@ -7,6 +7,9 @@ import { MascotaFormularioComponent } from './components/acciones-usuario/mascot
 import { TurnoFormularioComponent } from './components/acciones-usuario/turno-formulario.component';
 import { ListadoTurnosComponent } from './components/acciones-usuario/listado-turnos.component';
 import { ListadoTurnosTodosComponent } from './components/acciones-usuario/listado-turnos-todos.component';
+import { ServicioWebFormularioComponent } from './components/empresa/servicioWeb-formulario.component';
+import { ServicioWebListadoComponent } from './components/empresa/servicioWeb-listado.component';
+import { ListadoClientesComponent } from './components/empresa/listado-clientes.component';
 
 
 export const ROUTES: Routes = [
@@ -14,13 +17,16 @@ export const ROUTES: Routes = [
   { path: '', component: AppComponent },
   { path: 'home', component: HomeComponent,
     children:[
-      { path:'mascota-formulario', component: MascotaFormularioComponent },
-      { path:'turnos-formulario', component: TurnoFormularioComponent },
+      { path:'servicioWeb-formulario', component: ServicioWebFormularioComponent },
+      { path:'servicioWeb-listado', component: ServicioWebListadoComponent },
+      { path:'listado-clientes', component: ListadoClientesComponent },
+      { path:'alta-clientes', component: RegistrarseUserComponent },
+      /*{ path:'turnos-formulario', component: TurnoFormularioComponent },
       { path:'mis-turnos', component: ListadoTurnosComponent },
-      { path:'listado-turnos', component: ListadoTurnosTodosComponent }
+      { path:'listado-turnos', component: ListadoTurnosTodosComponent }*/
     ]
   },
-  { path: 'login', component: LoginUserComponent },
-  { path: 'registrarse', component: RegistrarseUserComponent }
+  { path: 'login', component: LoginUserComponent }
+  //{ path: 'registrarse', component: RegistrarseUserComponent }
 
 ];

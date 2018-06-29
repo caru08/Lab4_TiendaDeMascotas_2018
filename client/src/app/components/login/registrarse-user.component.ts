@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {  Router } from '@angular/router';
 import { SnackMessage } from './../../services/snackmessage.service';
 import { LoginService } from '../../services/login.service';
+import { ServicioClienteService } from '../../services/servicioCliente.service';
 import { User } from '../../models';
 
 @Component({
@@ -29,19 +30,23 @@ export class RegistrarseUserComponent {
 
   public listaRoles = [
     {
-      name: 'CLIENTE',
-      value: 'client'
+      name: 'PROFESIONAL',
+      value: 'profesional'
     },
     {
-      name: 'ADMINISTRADOR',
-      value: 'admin'
+      name: 'NORMAL',
+      value: 'normal'
+    },
+    {
+      name: 'FREE',
+      value: 'free'
     }
   ];
 
   constructor(private router: Router,
               private loginService: LoginService,
+              private servicioClienteService: ServicioClienteService,
               private snackMessage: SnackMessage) {
-    this.user.role = "client";
     this.invalidCaptcha = true;
   }
 
@@ -52,7 +57,7 @@ export class RegistrarseUserComponent {
 
   acceptClick(){
     this.loading = true;
-    this.loginService.registryUser(this.user).subscribe((response) => {
+    this.servicioClienteService.agregarCliente(this.user).subscribe((response) => {
       if(response.code == 201){
         this.router.navigate(['./home' ]);
       }else{

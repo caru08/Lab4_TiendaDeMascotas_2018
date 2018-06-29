@@ -38,10 +38,10 @@ export class MenuNavBarComponent implements OnInit{
     if(session.logged){
       this.user = new User();
       this.user.name = session.user.name;
-      this.getModulesByRole();
     }else{
       this.user = null;
     }
+    this.getModulesByRole();
   }
 
   moduleClick(module){
@@ -50,12 +50,16 @@ export class MenuNavBarComponent implements OnInit{
 
 
   private getModulesByRole(){
+    this.modules = [];
     switch(this.loginService.getRole()){
-      case "client":
+      case "normal":
         this.modules = StaticData.clientModules;
         break;
-      case "admin":
-        this.modules = StaticData.adminModules;
+      case "profesional":
+        this.modules = StaticData.clientModules;
+        break;
+      case "free":
+        this.modules = StaticData.freeModules;
         break;
     }
 
